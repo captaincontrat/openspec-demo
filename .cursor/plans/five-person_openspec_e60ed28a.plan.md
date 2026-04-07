@@ -38,6 +38,8 @@ Recommended split for **five people total**:
 
 This keeps every stream independent and uses only free live APIs.
 
+Shared service conventions, including local ports, directories, naming, and testing expectations, live in `docs/conventions-microservices.md`.
+
 ```mermaid
 flowchart LR
   eonetApi[NasaEONET] --> eonetSvc[NasaEventsService]
