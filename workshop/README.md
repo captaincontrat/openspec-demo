@@ -16,15 +16,15 @@ Ce script :
 
 - lance tous les checks d'APIs publiques
 - crée une branche datée par défaut au format `workshop-YYYY-MM-DD`
-- supprime le dossier `workshop/` dans cette nouvelle branche
-- crée un commit dédié pour que les branches des participants n'héritent pas des fichiers du facilitateur
+- supprime les dossiers `workshop/` et `.cursor/plans/` dans cette nouvelle branche
+- crée un commit dédié pour que les branches des participants n'héritent pas des fichiers du facilitateur ni du contexte de plans
 
 Si l'un des checks échoue, il faut résoudre le problème d'accès réseau ou d'API avant de continuer le workshop.
 
 ## Scripts disponibles
 
 - `run-all.sh` : lance uniquement les 4 checks d'APIs publiques
-- `prepare-workshop-branch.sh` : crée uniquement la branche datée et supprime `workshop/`
+- `prepare-workshop-branch.sh` : crée uniquement la branche datée et supprime `workshop/` ainsi que `.cursor/plans/`
 - `prepare-workshop.sh` : enchaîne les checks d'API puis la préparation de la branche
 
 Les checks d'APIs publiques couvrent :
@@ -52,4 +52,4 @@ Pour imposer un nom de branche précis :
 
 Une fois la branche datée créée, les participants doivent créer leur propre branche à partir d'elle.
 
-Le dossier `workshop/` aura déjà été supprimé dans cette branche de base, afin de ne pas influencer l'agent pendant la rédaction des spécifications.
+Les dossiers `workshop/` et `.cursor/plans/` auront déjà été supprimés dans cette branche de base, afin de ne pas influencer l'agent pendant la rédaction des spécifications.

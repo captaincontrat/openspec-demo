@@ -15,8 +15,8 @@ Usage: ./workshop/prepare-workshop-branch.sh [--branch <name>] [--base <branch>]
 Creates the dated participant base branch for the workshop:
 - switches to the base branch
 - creates the workshop branch
-- removes the workshop/ folder
-- commits the removal so participant branches do not inherit facilitator files
+- removes the workshop/ folder and .cursor/plans/
+- commits the removal so participant branches do not inherit facilitator files or plan context
 
 Options:
   --branch <name>        Override the default branch name (default: workshop-YYYY-MM-DD)
@@ -104,10 +104,17 @@ if git show-ref --verify --quiet "refs/heads/$branch_name"; then
   exit 1
 fi
 
-if [[ ! -d "$REPO_ROOT/workshop" ]]; then
-  printf 'The workshop/ directory was not found.\n' >&2
-  exit 1
-fi
+paths_to_remove=(
+  "workshop"
+  ".cursor/plans"
+)
+
+for path_to_remove in "${paths_to_remove[@]}"; do
+  if [[ ! -d "$REPO_ROOT/$path_to_remove" ]]; then
+    printf 'The %s directory was not found.\n' "$path_to_remove" >&2
+    exit 1
+  fi
+done
 
 step "Switching to base branch ${base_branch}"
 run_cmd git switch "$base_branch"
@@ -115,15 +122,15 @@ run_cmd git switch "$base_branch"
 step "Creating workshop branch ${branch_name}"
 run_cmd git switch -c "$branch_name"
 
-step "Removing facilitator files from participant base branch"
-run_cmd git rm -r workshop
+step "Removing facilitator files and plan context from participant base branch"
+run_cmd git rm -r "${paths_to_remove[@]}"
 
 step "Creating commit"
 if (( dry_run )); then
-  printf '[dry-run] git commit -m "Remove workshop facilitator files from participant base branch"\n'
+  printf '[dry-run] git commit -m "Remove workshop facilitator files and plans from participant base branch"\n'
 else
   git commit -m "$(cat <<'EOF'
-Remove workshop facilitator files from participant base branch
+Remove workshop facilitator files and plans from participant base branch
 EOF
 )"
 fi

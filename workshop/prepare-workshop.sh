@@ -10,7 +10,7 @@ Usage: ./workshop/prepare-workshop.sh [--branch <name>] [--base <branch>] [--dry
 Recommended facilitator entrypoint for workshop day:
 - runs all public API readiness checks
 - creates the dated participant base branch
-- removes the workshop/ folder from that new branch
+- removes the workshop/ folder and .cursor/plans/ from that new branch
 
 Options:
   --branch <name>        Override the default branch name (default: workshop-YYYY-MM-DD)
