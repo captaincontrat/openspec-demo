@@ -1,30 +1,55 @@
-# Vérification des APIs avant workshop
+# Vérification et préparation avant workshop
 
-Ce dossier contient des scripts de vérification des APIs publiques utilisées pendant le workshop.
+Ce dossier contient les scripts du facilitateur pour vérifier les APIs publiques utilisées pendant le workshop puis préparer la branche de base des participants.
 
-## Quand exécuter ces scripts
+## Commande recommandée
 
-Le script `run-all.sh` doit être exécuté au tout début du workshop, depuis la racine du dépôt, pour vérifier que les APIs répondent comme prévu avant que les participants commencent à écrire leurs spécifications.
+Le point d'entrée recommandé est `prepare-workshop.sh`. Il doit être exécuté au tout début du workshop, depuis la racine du dépôt.
 
 Commande :
 
 ```bash
-./workshop/run-all.sh
+./workshop/prepare-workshop.sh
 ```
 
-Ce script lance successivement :
+Ce script :
+
+- lance tous les checks d'APIs publiques
+- crée une branche datée par défaut au format `workshop-YYYY-MM-DD`
+- supprime le dossier `workshop/` dans cette nouvelle branche
+- crée un commit dédié pour que les branches des participants n'héritent pas des fichiers du facilitateur
+
+Si l'un des checks échoue, il faut résoudre le problème d'accès réseau ou d'API avant de continuer le workshop.
+
+## Scripts disponibles
+
+- `run-all.sh` : lance uniquement les 4 checks d'APIs publiques
+- `prepare-workshop-branch.sh` : crée uniquement la branche datée et supprime `workshop/`
+- `prepare-workshop.sh` : enchaîne les checks d'API puis la préparation de la branche
+
+Les checks d'APIs publiques couvrent :
 
 - `01-check-nasa-eonet.sh`
 - `02-check-nominatim.sh`
 - `03-check-open-meteo-weather.sh`
 - `04-check-open-meteo-air-quality.sh`
 
-Si l'un des checks échoue, il faut résoudre le problème d'accès réseau ou d'API avant de continuer le workshop.
+## Options utiles
 
-## Après la vérification
+Pour simuler la préparation sans modifier Git :
 
-Une fois les vérifications terminées avec succès, chaque participant doit supprimer localement le dossier `workshop/` avant d'écrire ses spécifications.
+```bash
+./workshop/prepare-workshop.sh --dry-run
+```
 
-Objectif : éviter que ces fichiers d'assistance influencent l'agent pendant la rédaction des spécifications.
+Pour imposer un nom de branche précis :
 
-Si vous travaillez avec Git, cette suppression est uniquement locale pour le workshop et ne doit pas être intégrée par erreur dans un commit.
+```bash
+./workshop/prepare-workshop.sh --branch workshop-2026-04-07
+```
+
+## Après la préparation
+
+Une fois la branche datée créée, les participants doivent créer leur propre branche à partir d'elle.
+
+Le dossier `workshop/` aura déjà été supprimé dans cette branche de base, afin de ne pas influencer l'agent pendant la rédaction des spécifications.
