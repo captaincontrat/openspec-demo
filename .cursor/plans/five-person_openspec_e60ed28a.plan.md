@@ -90,7 +90,7 @@ Use one foundation change plus one change per service:
 
 For each owner:
 
-1. Use `/opsx:propose` or `/opsx:ff`
+1. Use `/opsx:propose`
 2. Generate only one tiny app
 3. Keep the app limited to one upstream integration and one main endpoint
 4. Stop when the service runs locally and returns live JSON
