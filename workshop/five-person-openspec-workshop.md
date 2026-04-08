@@ -7,6 +7,36 @@ transition: fade
 _paginate: false
 ---
 
+<style>
+section header {
+  top: 12px;
+  left: 0;
+  right: 0;
+  width: 100%;
+  text-align: center;
+}
+.tl {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.tl span {
+  padding: 3px 12px;
+  border-radius: 99px;
+  font-size: 1.48em;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.25);
+  font-weight: 500;
+}
+.tl .done { color: rgba(255, 255, 255, 0.5); }
+.tl .on {
+  background: rgba(255, 255, 255, 0.12);
+  color: rgba(255, 255, 255, 0.95);
+  font-weight: 700;
+}
+</style>
+
 <!-- _transition: glow -->
 
 # <!--fit--> Workshop OpenSpec x Cursor
@@ -18,6 +48,7 @@ _paginate: false
 ---
 
 <!-- _transition: slide -->
+<!-- header: '<div class="tl"><span class="on">Contexte</span><span>Projet</span><span>Archi</span><span>Méthode</span><span>Go!</span></div>' -->
 
 # Objectif
 
@@ -55,6 +86,7 @@ proposal, design, tasks, spec deltas.
 ---
 
 <!-- _transition: cube -->
+<!-- header: '<div class="tl"><span class="done">Contexte</span><span class="on">Projet</span><span>Archi</span><span>Méthode</span><span>Go!</span></div>' -->
 
 # Ce que l'on construit
 
@@ -112,6 +144,7 @@ Compose les 4 services, gere les absences, rend la page de monitoring.
 ---
 
 <!-- _transition: iris-in -->
+<!-- header: '<div class="tl"><span class="done">Contexte</span><span class="done">Projet</span><span class="on">Archi</span><span>Méthode</span><span>Go!</span></div>' -->
 
 # <!--fit--> Architecture
 
@@ -142,6 +175,7 @@ Un upstream par service. Une composition dans le BFF.
 ---
 
 <!-- _transition: fade -->
+<!-- header: '<div class="tl"><span class="done">Contexte</span><span class="done">Projet</span><span class="done">Archi</span><span class="on">Méthode</span><span>Go!</span></div>' -->
 
 # Workflow OpenSpec
 
@@ -173,6 +207,7 @@ Un upstream par service. Une composition dans le BFF.
 ---
 
 <!-- _transition: zoom -->
+<!-- header: '<div class="tl"><span class="done">Contexte</span><span class="done">Projet</span><span class="done">Archi</span><span class="done">Méthode</span><span class="on">Go!</span></div>' -->
 
 # Definition of done
 
@@ -198,5 +233,6 @@ Un upstream par service. Une composition dans le BFF.
 
 <!-- _transition: explode -->
 <!-- _paginate: false -->
+<!-- _header: '' -->
 
 # <!--fit--> À vous de jouer
