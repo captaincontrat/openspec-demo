@@ -212,7 +212,7 @@ Un upstream par service. Une composition dans le BFF.
 # Definition of done
 
 - Le service demarre et `/health` repond
-- L'endpoint principal renvoie du JSON live
+- L'endpoint principal renvoie du JSON correct
 - Le BFF appelle les services disponibles
 - Les services absents sont geres proprement
 - La demo tourne
