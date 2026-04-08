@@ -52,7 +52,7 @@ section header {
 
 # Objectif
 
-Construire **ensemble** un moniteur d'evenements naturels NASA en temps reel.
+Construire **ensemble** un moniteur d'evenements naturels en temps reel.
 
 - Donnees live
 - Chaque participant livre une application autonome
