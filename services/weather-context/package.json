@@ -1,0 +1,23 @@
+{
+  "name": "weather-context-service",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "tsx src/server.ts",
+    "start": "node --import tsx src/server.ts",
+    "test": "vitest run",
+    "test:unit": "vitest run test/unit",
+    "test:e2e": "vitest run test/e2e"
+  },
+  "dependencies": {
+    "express": "^5.1.0"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.2",
+    "@types/node": "^22.14.1",
+    "tsx": "^4.19.4",
+    "typescript": "^5.8.3",
+    "vitest": "^3.1.1"
+  }
+}
