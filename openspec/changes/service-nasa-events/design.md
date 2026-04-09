@@ -106,5 +106,4 @@ Rollback is straightforward because this change introduces a new service contrac
 
 ## Open Questions
 
-- When an upstream event has multiple candidate points, which one should the implementation treat as the canonical `location` for the facade?
-- Should the service apply an internal default limit when fetching upstream events, even though no public query parameter is exposed?
+- None for the initial implementation. The service uses the most recent valid `Point` geometry as the canonical `location`, and it does not expose or document an internal fetch limit in the public contract.

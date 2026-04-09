@@ -15,9 +15,9 @@ Le service est une facade locale de l'API `NASA EONET`. Il ne doit pas exposer l
 
 `nasa-events-service` recupere les evenements naturels ouverts depuis `NASA EONET` et expose une reponse JSON locale simplifiee.
 
- Le service :
- - expose `GET /health`
- - expose `GET /events`
+Le service :
+- expose `GET /health`
+- expose `GET /events`
 - retourne uniquement des evenements en cours
 - simplifie les categories et les sources
 - normalise la localisation en `{ lat, lon }`
@@ -101,6 +101,7 @@ Champs explicitement exclus du contrat public :
 - Le service ne retourne que des evenements ouverts.
 - Le service doit convertir les donnees upstream en une forme stable, independamment de la structure brute de `NASA EONET`.
 - Le service doit fournir une seule localisation exploitable par evenement public.
+- Si plusieurs geometries `Point` valides existent pour un evenement, le service retient le point le plus recent.
 - Si un evenement upstream ne peut pas etre reduit a une localisation unique `{ lat, lon }`, le service peut l'omettre de la reponse publique.
 - Les categories ne doivent conserver que les identifiants.
 - Les sources ne doivent conserver que les URLs.
