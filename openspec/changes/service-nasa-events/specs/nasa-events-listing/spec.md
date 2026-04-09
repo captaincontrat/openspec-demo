@@ -1,10 +1,10 @@
 ## ADDED Requirements
 
 ### Requirement: Expose an open events listing
-`nasa-events-service` SHALL expose `GET /api/events` and return a JSON document containing only open events from NASA EONET. The public contract SHALL not require any query parameters.
+`nasa-events-service` SHALL expose `GET /events` and return a JSON document containing only open events from NASA EONET. The public contract SHALL not require any query parameters.
 
 #### Scenario: Client requests the event list
-- **WHEN** a client sends `GET /api/events`
+- **WHEN** a client sends `GET /events`
 - **THEN** the service returns HTTP 200 with a JSON body
 - **AND** the body contains a top-level `source` string equal to `NASA EONET`
 - **AND** the body contains a top-level `events` array

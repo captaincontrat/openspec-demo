@@ -5,7 +5,7 @@
 ## What Changes
 
 - Add a dedicated OpenSpec change for `nasa-events-service` as a facade over `https://eonet.gsfc.nasa.gov/api/v3/events`.
-- Define a single public business endpoint, `GET /api/events`, that returns only open events and takes no public query parameters.
+- Define a single public business endpoint, `GET /events`, that returns only open events and takes no public query parameters.
 - Define the normalized event payload shape exposed by the service: `id`, `title`, `description`, `link`, simplified `categories`, simplified `sources`, and normalized `location`.
 - Exclude upstream fields and behaviors that are out of scope for the facade, including `status`, `closed`, and `geometry`.
 - Add a service-specific convention document at `docs/conventions-nasa-events-service.md` so consumers have a written contract before implementation starts.
@@ -13,7 +13,7 @@
 ## Capabilities
 
 ### New Capabilities
-- `nasa-events-listing`: Expose a stable local JSON facade for open NASA EONET events through `GET /api/events`.
+- `nasa-events-listing`: Expose a stable local JSON facade for open NASA EONET events through `GET /events`.
 
 ### Modified Capabilities
 <!-- None. -->

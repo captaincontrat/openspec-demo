@@ -15,9 +15,9 @@ Le service est une facade locale de l'API `NASA EONET`. Il ne doit pas exposer l
 
 `nasa-events-service` recupere les evenements naturels ouverts depuis `NASA EONET` et expose une reponse JSON locale simplifiee.
 
-Le service :
-- expose `GET /health`
-- expose `GET /api/events`
+ Le service :
+ - expose `GET /health`
+ - expose `GET /events`
 - retourne uniquement des evenements en cours
 - simplifie les categories et les sources
 - normalise la localisation en `{ lat, lon }`
@@ -44,7 +44,7 @@ Exemple de reponse :
 }
 ```
 
-### `GET /api/events`
+### `GET /events`
 
 Endpoint principal du service.
 
@@ -128,4 +128,4 @@ Codes d'erreur recommandes :
 
 ## Intention de conception
 
-`nasa-events-service` est une facade, pas un proxy brut. Les consommateurs doivent pouvoir utiliser `GET /api/events` sans connaitre les details de `NASA EONET`, ni la structure GeoJSON de l'upstream.
+`nasa-events-service` est une facade, pas un proxy brut. Les consommateurs doivent pouvoir utiliser `GET /events` sans connaitre les details de `NASA EONET`, ni la structure GeoJSON de l'upstream.

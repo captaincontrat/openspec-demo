@@ -9,7 +9,7 @@ This change defines the contract and design for a thin facade service before imp
 ## Goals / Non-Goals
 
 **Goals:**
-- Define a stable local contract for `GET /api/events`.
+- Define a stable local contract for `GET /events`.
 - Restrict the public service scope to open NASA EONET events only.
 - Normalize each returned event into a small payload with consumer-friendly fields.
 - Document the service contract in a dedicated file, `docs/conventions-nasa-events-service.md`.
@@ -36,8 +36,8 @@ Alternatives considered:
 - Raw proxying of the EONET response. Rejected because it leaks upstream complexity and undermines the value of the service boundary.
 - Partial passthrough with optional raw fields. Rejected because it would create two competing contracts from the start.
 
-### Decision: `GET /api/events` has no public query parameters
-The public contract for the first version will be a single, parameterless `GET /api/events` endpoint.
+### Decision: `GET /events` has no public query parameters
+The public contract for the first version will be a single, parameterless `GET /events` endpoint.
 
 Rationale:
 - The user explicitly wants an ultra-simple contract.
@@ -100,7 +100,7 @@ Alternatives considered:
 
 1. Add the service-specific convention document at `docs/conventions-nasa-events-service.md`.
 2. Implement `nasa-events-service` in `services/nasa-events/` using the documented contract.
-3. Verify `GET /health` and `GET /api/events` locally against live NASA EONET data.
+3. Verify `GET /health` and `GET /events` locally against live NASA EONET data.
 
 Rollback is straightforward because this change introduces a new service contract rather than modifying an existing one. The contract artifacts can be revised before implementation if needed.
 
