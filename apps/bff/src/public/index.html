@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NASA Natural Events Monitor</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <div class="header-left">
+      <h1>NASA Natural Events Monitor</h1>
+      <span id="event-count" class="badge">--</span>
+    </div>
+    <div class="header-right">
+      <div id="status-indicator" class="status-dot" title="Service status"></div>
+    </div>
+  </header>
+
+  <main>
+    <div id="map"></div>
+    <div id="map-overlay" class="overlay hidden">
+      <div class="overlay-content">
+        <span id="overlay-icon" class="overlay-icon"></span>
+        <p id="overlay-message"></p>
+        <button id="overlay-retry" class="btn-retry hidden">Réessayer</button>
+      </div>
+    </div>
+
+    <aside id="detail-panel" class="panel hidden">
+      <button id="panel-close" class="panel-close">&times;</button>
+      <div id="panel-content">
+        <h2 id="panel-title"></h2>
+        <div id="panel-category" class="panel-category"></div>
+
+        <section class="panel-section" id="section-location">
+          <h3>Localisation</h3>
+          <div class="section-body" id="location-body"></div>
+        </section>
+
+        <section class="panel-section" id="section-weather">
+          <h3>Météo</h3>
+          <div class="section-body" id="weather-body"></div>
+        </section>
+
+        <section class="panel-section" id="section-air">
+          <h3>Qualité de l'air</h3>
+          <div class="section-body" id="air-body"></div>
+        </section>
+      </div>
+      <div id="panel-loading" class="panel-loading hidden">
+        <div class="spinner"></div>
+        <p>Chargement des détails...</p>
+      </div>
+    </aside>
+  </main>
+
+  <div id="legend" class="legend">
+    <h4>Catégories</h4>
+    <div id="legend-items"></div>
+  </div>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
