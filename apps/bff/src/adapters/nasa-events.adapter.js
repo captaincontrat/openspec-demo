@@ -1,9 +1,15 @@
 import { CATEGORY_STYLES } from "../config.js";
 
-function resolveCategory(raw) {
-  const id = raw?.id || raw?.category_id || raw?.categoryId || null;
-  const title = raw?.title || raw?.name || raw?.category_name || null;
-  return { id, title };
+function resolveCategory(raw, categories) {
+  if (raw) {
+    const id = raw.id || raw.category_id || raw.categoryId || null;
+    const title = raw.title || raw.name || raw.category_name || null;
+    return { id, title };
+  }
+  if (Array.isArray(categories) && categories.length > 0) {
+    return { id: categories[0], title: categories[0] };
+  }
+  return { id: null, title: null };
 }
 
 function resolveCategoryStyle(categoryId) {
@@ -33,9 +39,10 @@ function resolveCoordinates(geometry) {
 }
 
 function adaptEvent(raw) {
-  const category = resolveCategory(raw?.category);
+  const category = resolveCategory(raw?.category, raw?.categories);
   const style = resolveCategoryStyle(category.id);
   const geometry = raw?.geometry || raw?.geo || null;
+  const location = raw?.location || null;
 
   return {
     id: raw?.id || raw?.event_id || null,
@@ -44,7 +51,7 @@ function adaptEvent(raw) {
     sources: raw?.sources || raw?.source || [],
     geometry: {
       date: geometry?.date || geometry?.timestamp || null,
-      coordinates: resolveCoordinates(geometry),
+      coordinates: resolveCoordinates(geometry) || resolveCoordinates(location),
     },
   };
 }

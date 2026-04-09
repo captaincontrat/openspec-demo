@@ -3,7 +3,7 @@ import { adaptLocationResponse } from "../adapters/location-context.adapter.js";
 
 export async function fetchLocation(lat, lon) {
   try {
-    const url = new URL("/api/location", config.services.locationContext);
+    const url = new URL("/location", config.services.locationContext);
     url.searchParams.set("lat", lat);
     url.searchParams.set("lon", lon);
 

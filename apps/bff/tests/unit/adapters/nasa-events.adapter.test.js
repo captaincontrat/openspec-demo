@@ -80,6 +80,34 @@ describe("nasa-events adapter", () => {
     expect(adaptNasaEventsResponse({})).toEqual([]);
   });
 
+  it("normalizes actual nasa-events service response (categories array + location)", () => {
+    const raw = {
+      source: "NASA EONET",
+      events: [
+        {
+          id: "EONET_6388",
+          title: "Wildfire - California",
+          description: null,
+          link: "https://eonet.gsfc.nasa.gov/api/v3/events/EONET_6388",
+          categories: ["wildfires"],
+          sources: ["https://inciweb.wildfire.gov"],
+          location: { lat: 34.05, lon: -118.24 },
+        },
+      ],
+    };
+
+    const result = adaptNasaEventsResponse(raw);
+
+    expect(result).toHaveLength(1);
+    expect(result[0].id).toBe("EONET_6388");
+    expect(result[0].title).toBe("Wildfire - California");
+    expect(result[0].category.id).toBe("wildfires");
+    expect(result[0].category.color).toBe("#E53E3E");
+    expect(result[0].category.icon).toBe("flame");
+    expect(result[0].geometry.coordinates).toEqual({ lat: 34.05, lon: -118.24 });
+    expect(result[0].sources).toEqual(["https://inciweb.wildfire.gov"]);
+  });
+
   it("assigns fallback style for unknown categories", () => {
     const raw = {
       events: [

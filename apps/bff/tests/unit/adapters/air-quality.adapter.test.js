@@ -24,6 +24,27 @@ describe("air-quality adapter", () => {
     });
   });
 
+  it("normalizes actual air-quality service response (europeanAqi + object metrics)", () => {
+    const raw = {
+      location: { latitude: 34.05, longitude: -118.24 },
+      observedAt: "2026-04-09T06:15:00Z",
+      airQuality: {
+        europeanAqi: 42,
+        pm10: { value: 15.3, unit: "ug/m3" },
+        pm2_5: { value: 8.7, unit: "ug/m3" },
+      },
+      source: "open-meteo",
+    };
+
+    const result = adaptAirQualityResponse(raw);
+
+    expect(result.aqi).toBe(42);
+    expect(result.pm25).toBe(8.7);
+    expect(result.pm10).toBe(15.3);
+    expect(result.no2).toBeNull();
+    expect(result.o3).toBeNull();
+  });
+
   it("handles snake_case wrapper and Open-Meteo field names", () => {
     const raw = {
       air_quality: {

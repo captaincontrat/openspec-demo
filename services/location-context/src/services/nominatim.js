@@ -36,7 +36,7 @@ function createNominatimClient() {
   let lastRequestTime = 0;
 
   async function fetchFromNominatim(lat, lon) {
-    const url = `${NOMINATIM_BASE}?lat=${lat}&lon=${lon}&format=json`;
+    const url = `${NOMINATIM_BASE}?lat=${lat}&lon=${lon}&format=json&accept-language=fr`;
     const controller = new AbortController();
     const timer = setTimeout(() => controller.abort(), REQUEST_TIMEOUT_MS);
 

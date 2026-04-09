@@ -1,5 +1,17 @@
 export function adaptLocationResponse(raw) {
-  const src = raw?.location || raw?.result || raw?.data || raw || {};
+  const loc = raw?.location;
+
+  if (typeof loc === "string") {
+    const parts = loc.split(", ");
+    return {
+      name: parts[0] || null,
+      admin: parts.length > 2 ? parts[1] : null,
+      country: parts.length > 2 ? parts[2] : parts[1] || null,
+      countryCode: null,
+    };
+  }
+
+  const src = loc || raw?.result || raw?.data || raw || {};
 
   return {
     name: src.name || src.city_name || src.display_name || src.city || null,

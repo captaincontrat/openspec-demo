@@ -3,9 +3,9 @@ import { adaptAirQualityResponse } from "../adapters/air-quality.adapter.js";
 
 export async function fetchAirQuality(lat, lon) {
   try {
-    const url = new URL("/api/air-quality", config.services.airQuality);
-    url.searchParams.set("lat", lat);
-    url.searchParams.set("lon", lon);
+    const url = new URL("/air-quality/current", config.services.airQuality);
+    url.searchParams.set("latitude", lat);
+    url.searchParams.set("longitude", lon);
 
     const res = await fetch(url, {
       signal: AbortSignal.timeout(config.fetchTimeout),

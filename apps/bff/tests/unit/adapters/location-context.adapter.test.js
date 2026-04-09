@@ -57,6 +57,41 @@ describe("location-context adapter", () => {
     expect(result.countryCode).toBe("JP");
   });
 
+  it("normalizes actual location-context service response (string location)", () => {
+    const raw = {
+      lat: 34.05,
+      lon: -118.24,
+      location: "Los Angeles, California, United States",
+    };
+
+    const result = adaptLocationResponse(raw);
+
+    expect(result.name).toBe("Los Angeles");
+    expect(result.admin).toBe("California");
+    expect(result.country).toBe("United States");
+    expect(result.countryCode).toBeNull();
+  });
+
+  it("handles string location with only city and country", () => {
+    const raw = { lat: 48.85, lon: 2.35, location: "Paris, France" };
+
+    const result = adaptLocationResponse(raw);
+
+    expect(result.name).toBe("Paris");
+    expect(result.admin).toBeNull();
+    expect(result.country).toBe("France");
+  });
+
+  it("handles string location with single value", () => {
+    const raw = { lat: 0, lon: 0, location: "Unknown location" };
+
+    const result = adaptLocationResponse(raw);
+
+    expect(result.name).toBe("Unknown location");
+    expect(result.admin).toBeNull();
+    expect(result.country).toBeNull();
+  });
+
   it("returns nulls for missing fields", () => {
     const result = adaptLocationResponse({});
 

@@ -63,6 +63,19 @@ describe("nasa-events service", () => {
     expect(result.error).toContain("timeout");
   });
 
+  it("calls /events path (not /api/events)", async () => {
+    fetch.mockResolvedValue({
+      ok: true,
+      json: () => Promise.resolve({ events: [] }),
+    });
+
+    await fetchEvents();
+
+    const calledUrl = fetch.mock.calls[0][0].toString();
+    expect(calledUrl).toContain("/events");
+    expect(calledUrl).not.toContain("/api/events");
+  });
+
   it("forwards query params to URL", async () => {
     fetch.mockResolvedValue({
       ok: true,

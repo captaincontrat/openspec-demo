@@ -3,7 +3,7 @@ import { adaptNasaEventsResponse } from "../adapters/nasa-events.adapter.js";
 
 export async function fetchEvents(queryParams = {}) {
   try {
-    const url = new URL("/api/events", config.services.nasaEvents);
+    const url = new URL("/events", config.services.nasaEvents);
     for (const [key, value] of Object.entries(queryParams)) {
       if (value) url.searchParams.set(key, value);
     }

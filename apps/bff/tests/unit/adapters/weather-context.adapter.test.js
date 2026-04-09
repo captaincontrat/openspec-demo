@@ -64,6 +64,27 @@ describe("weather-context adapter", () => {
     expect(result.windDirection).toBe(90);
   });
 
+  it("normalizes actual weather-context service response (flat DTO)", () => {
+    const raw = {
+      lat: 34.05,
+      lon: -118.24,
+      temperature_c: 14.4,
+      humidity_pct: 86,
+      wind_speed_kmh: 4.7,
+      precipitation_mm: 0.0,
+      weather_code: 3,
+      weather_description: "Overcast",
+      observed_at: "2026-04-09T06:15",
+    };
+
+    const result = adaptWeatherResponse(raw);
+
+    expect(result.temperature).toBe(14.4);
+    expect(result.humidity).toBe(86);
+    expect(result.windSpeed).toBe(4.7);
+    expect(result.description).toBe("Overcast");
+  });
+
   it("returns nulls for missing fields", () => {
     const result = adaptWeatherResponse({});
 
