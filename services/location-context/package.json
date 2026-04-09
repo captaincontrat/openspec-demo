@@ -1,0 +1,14 @@
+{
+  "name": "location-context-service",
+  "version": "1.0.0",
+  "description": "Reverse geocoding microservice wrapping the Nominatim API for the NASA EONET monitor",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "test": "node --test --test-name-pattern='.' tests/unit/",
+    "test:e2e": "node --test --test-name-pattern='.' tests/e2e/"
+  },
+  "dependencies": {
+    "express": "^4.21.0"
+  }
+}
