@@ -1,0 +1,20 @@
+{
+  "name": "bff-nasa-monitor",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "BFF orchestrating NASA EONET microservices for a natural events dashboard",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "express": "^5.1.0",
+    "node-cache": "^5.1.2"
+  },
+  "devDependencies": {
+    "supertest": "^7.1.0",
+    "vitest": "^3.1.1"
+  }
+}
