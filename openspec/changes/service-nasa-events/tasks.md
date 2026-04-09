@@ -19,4 +19,4 @@
 
 - [x] 4.1 Add unit tests for the normalization logic and the upstream adapter error handling.
 - [x] 4.2 Add E2E tests covering service startup, `GET /health`, and `GET /events`.
-- [ ] 4.3 Run the local test suite and manually verify live responses from NASA EONET.
+- [x] 4.3 Run the local test suite and manually verify live responses from NASA EONET.
